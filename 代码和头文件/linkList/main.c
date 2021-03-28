@@ -86,9 +86,20 @@ int main()
 			printf("%d\n", status);
 			break; 
 		}
-		case 6: status = ReverseList(&pHead);  
+		case 6: {
+			int n;
+			printf("提供了两种反转方式，请进行选择：\n");
+			printf("1.迭代实现\n2.递归实现\n");
+			scanf("%d", &n);
+			switch (n)
+			{
+			case 1:status = ReverseList(&pHead); break;
+			case 2:status = RecursionReverseList(&pHead); break;
+			dafault:break;
+			}
 			printf("%d\n", status);
 			break;
+		}
 		case 7: status = IsLoopList(pHead);
 			printf("%d\n", status);
 			break;

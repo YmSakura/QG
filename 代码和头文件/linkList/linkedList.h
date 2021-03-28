@@ -112,6 +112,7 @@ Status SearchList(LinkedList L, ElemType e);
  *  @notice      : None
  */
 Status ReverseList(LinkedList *L);
+Status RecursionReverseList(LinkedList* L);
 
 /**
  *  @name        : Status IsLoopList(LinkedList L)

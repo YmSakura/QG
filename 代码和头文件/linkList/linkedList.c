@@ -1,6 +1,7 @@
 #include "linkedList.h"
 #include <malloc.h>
 #include <stdio.h>
+LNode* RecursionReverse(LNode* head);
 
 /**
  *  @name        : Status InitList(LinkList *L);
@@ -114,6 +115,25 @@ Status SearchList(LinkedList L, ElemType e) {
  *	@return		 : Status
  *  @notice      : None
  */
+ //递归实现反转
+Status RecursionReverseList(LinkedList* L) {
+	if ((*L) == NULL || (*L)->next == NULL)
+		return ERROR;
+	LNode* head = (*L)->next;
+	LNode* newHead = RecursionReverse((head));			//遍历到尾部进行反转
+	(*L)->next = newHead;
+	return SUCCESS;
+}
+LNode* RecursionReverse(LNode* head){
+	if (head == NULL || head->next == NULL)
+		return head;
+	LNode* newHead = RecursionReverse(head->next);
+	head->next->next = head;
+	head->next = NULL;
+	return newHead;
+}
+
+//迭代实现反转
 Status ReverseList(LinkedList *L) {
 	if ((*L) == NULL || (*L)->next == NULL)
 		return ERROR;
@@ -133,27 +153,6 @@ Status ReverseList(LinkedList *L) {
 	return SUCCESS;
 }
 
-//第一种写法
-//Status ReverseList(LinkedList* L) {
-//	if ((*L) == NULL || (*L)->next == NULL)
-//		return ERROR;
-//	LNode* p1, * p2, * p3;
-//	p1 = *L;
-//	p2 = (*L)->next;
-//	p3 = NULL;
-//	while (p2)
-//	{
-//		p3 = p2->next;
-//		p2->next = p1;		//反转操作
-//		p1 = p2;
-//		p2 = p3;
-//	}
-//	p2 = (LinkedList)malloc(sizeof(LNode));
-//	p2->next = p1;
-//	(*L)->next->next = NULL;	//(*L)->next是原来的第一个结点，使其成为新的尾结点
-//	(*L) = p2;
-//	return SUCCESS;
-//}
 
 /**
  *  @name        : Status IsLoopList(LinkedList L)
@@ -197,7 +196,7 @@ LNode* ReverseEvenList(LinkedList *L) {
 			p1->next = p2->next;				//p2->next->next为空意味着结点个数为奇数，且循环在此次交换结束
 			p0->next = p2;
 			p2->next = p1;
-			return *L;
+			return *L;							//循环结束
 		}
 		p2->next = p1;							//偶数结点的反转
 		p0 = p1;								//p0继续指向交换之后位于后面的结点
