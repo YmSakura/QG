@@ -5,7 +5,7 @@
 
 int main()
 {
-	DuLinkedList pHead;		//创建头结点
+	DuLinkedList pHead = NULL;		//创建头结点
 	DuLNode* p, * q;
 	Status status;
 	int num = 0, pos;
@@ -18,7 +18,7 @@ int main()
 	}
 	while (num != OVERFLOW)
 	{
-		printf("输入数字使用相应功能。建议先初始化链表,不初始化出现bug概不负责\n");
+		printf("输入数字使用相应功能。建议先初始化链表\n");
 		printf("-1.退出系统\n");
 		printf("1:初始化链表\n");
 		printf("2:前插结插入点\n");
@@ -61,6 +61,7 @@ int main()
 			if (p == NULL)
 			{
 				printf("该索引无效，请重新输入！\n");
+				free(p);
 				break;
 			}
 			q = (DuLNode*)malloc(sizeof(DuLNode));
@@ -81,6 +82,7 @@ int main()
 			if (p == NULL)
 			{
 				printf("该索引无效，请重新输入！\n");
+				free(p);
 				break;
 			}
 			ElemType e;

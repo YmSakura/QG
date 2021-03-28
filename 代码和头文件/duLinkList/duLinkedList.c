@@ -25,6 +25,11 @@ Status InitList_DuL(DuLinkedList *L) {
  *  @notice      : None
  */
 void DestroyList_DuL(DuLinkedList *L) {
+	if (*L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return;
+	}
 	DuLNode* p = *L;
 	while (p) {
 		p = p->next;
@@ -101,6 +106,11 @@ Status DeleteList_DuL(DuLNode *p, ElemType *e) {
  *  @notice      : None
  */
 void TraverseList_DuL(DuLinkedList L, void (*visit)(ElemType e)) {
+	if (L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return;
+	}
 	DuLNode* p = L->next;
 	while (p)
 	{
@@ -123,6 +133,11 @@ void visit(ElemType e)
  *  @notice      : my additional function
  */
 DuLNode* FindNode(DuLinkedList L, int pos) {
+	if (L == NULL)
+	{
+		printf("链表未创建！请先创建链表");
+		return NULL;
+	}
 	DuLNode* p = L;
 	int cnt = 0;
 	while (p)
