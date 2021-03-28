@@ -26,6 +26,11 @@ Status InitList(LinkedList *L) {
  *  @notice      : None
  */
 void DestroyList(LinkedList *L) {
+	if (*L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return;
+	}
 	LinkedList p = *L;
 	while (p) {
 		p = p->next;
@@ -76,6 +81,11 @@ Status DeleteList(LNode *p, ElemType *e) {
  *  @notice      : None
  */
 void TraverseList(LinkedList L, void (*visit)(ElemType e)) {		//函数指针 指向函数void visit(ElemType e)
+	if (L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return;
+	}
 	LNode* p = L->next;
 	while(p)
 	{
@@ -98,7 +108,12 @@ void visit(ElemType e)
  *  @notice      : None
  */
 Status SearchList(LinkedList L, ElemType e) {
-	LNode* p = L;
+	if (L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return ERROR;
+	}
+	LNode* p = L->next;
 	while (p)
 	{
 		if (p->data == e)
@@ -118,7 +133,10 @@ Status SearchList(LinkedList L, ElemType e) {
  //递归实现反转
 Status RecursionReverseList(LinkedList* L) {
 	if ((*L) == NULL || (*L)->next == NULL)
+	{
+		printf("链表未创建或链表中只存在头结点，请先创建链表或添加一个实际结点！\n");
 		return ERROR;
+	}	
 	LNode* head = (*L)->next;
 	LNode* newHead = RecursionReverse((head));			//遍历到尾部进行反转
 	(*L)->next = newHead;
@@ -136,7 +154,10 @@ LNode* RecursionReverse(LNode* head){
 //迭代实现反转
 Status ReverseList(LinkedList *L) {
 	if ((*L) == NULL || (*L)->next == NULL)
+	{
+		printf("链表未创建或链表中只存在头结点，请先创建链表或添加一个实际结点\n");
 		return ERROR;
+	}
 	LNode* p1, * p2, * p3;
 	p1 = (*L)->next;
 	p2 = p1->next;
@@ -162,6 +183,11 @@ Status ReverseList(LinkedList *L) {
  *  @notice      : None
  */
 Status IsLoopList(LinkedList L) {
+	if (L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return ERROR;
+	}
 	LNode* pFast, * pSlow;				//快慢指针法
 	pFast = pSlow = L;
 	while (pFast && pFast->next)
@@ -182,6 +208,16 @@ Status IsLoopList(LinkedList L) {
  *  @notice      : choose to finish
  */
 LNode* ReverseEvenList(LinkedList *L) {
+	if (*L == NULL)
+	{
+		printf("链表未创建，请先创建链表！\n");
+		return NULL;
+	}
+	if ((*L)->next == NULL)
+	{
+		printf("链表中只有头结点，请先添加一个实际结点\n");
+		return *L;
+	}
 	LNode * p0, * p1, * p2;				//p0,p1,p2 按顺序代表不同结点
 	p0 = *L;							//p0指向头结点
 	p1 = p0->next;						//p1和p2为需要交换的结点
@@ -212,6 +248,11 @@ LNode* ReverseEvenList(LinkedList *L) {
  *  @notice      : choose to finish
  */
 LNode* FindMidNode(LinkedList *L) {
+	if (*L == NULL)
+	{
+		printf("链表未创建！请先创建链表");
+		return NULL;
+	}
 	LNode* p = *L;
 	int cnt = 0;
 	while (p)
@@ -235,6 +276,11 @@ LNode* FindMidNode(LinkedList *L) {
  *  @notice      : my additional function
  */
 LNode* FindNode(LinkedList L,int pos) {
+	if (L == NULL)
+	{
+		printf("链表未创建！请先创建链表");
+		return NULL;
+	}
 	LNode* p = L;
 	int cnt = 0;
 	while (p)

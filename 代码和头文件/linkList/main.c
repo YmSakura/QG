@@ -4,7 +4,7 @@
 
 int main()
 {
-	LinkedList pHead;		//创建头结点
+	LinkedList pHead = NULL;		//创建头结点
 	LNode* p,* q;
 	Status status;
 	int num = 0, pos;
@@ -17,7 +17,7 @@ int main()
 	}
 	while (num != OVERFLOW)
 	{
-		printf("输入数字使用相应功能。建议先初始化链表,不初始化出现bug概不负责\n");
+		printf("输入数字使用相应功能。建议先初始化链表\n");
 		printf("-1.退出系统\n");
 		printf("1:初始化链表\n");
 		printf("2:插入结点\n");
@@ -44,6 +44,7 @@ int main()
 			if (p == NULL)
 			{
 				printf("该索引无效，请重新输入！\n");
+				free(p);
 				break;
 			}
 			q = (LNode*)malloc(sizeof(LNode));
@@ -64,6 +65,7 @@ int main()
 			if (p == NULL)
 			{
 				printf("该索引无效，请重新输入！\n");
+				free(p);
 				break;
 			}
 			ElemType e;
@@ -110,6 +112,12 @@ int main()
 		case 9: { 
 			p = (LNode*)malloc(sizeof(LNode));
 			p = FindMidNode(&pHead);
+			if (p == NULL)
+			{
+				printf("查找失败！");
+				free(p);
+				break;
+			}
 			printf("中间结点的data为：%d\n", p->data);
 			break;
 		}
