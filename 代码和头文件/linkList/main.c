@@ -17,6 +17,8 @@ int main()
 	}
 	while (num != OVERFLOW)
 	{
+		Sleep(1000);
+		system("cls");
 		printf("输入数字使用相应功能。建议先初始化链表\n");
 		printf("-1.退出系统\n");
 		printf("1:初始化链表\n");
@@ -30,11 +32,25 @@ int main()
 		printf("9.搜索链表中间结点\n");
 		printf("10.摧毁链表\n");
 		
-		scanf("%d", &num);
+		status = scanf("%d", &num);
+		while (getchar() != '\n');
+		if (status == 0)
+		{
+			printf("输出有误！请重新输入！\n");
+			continue;
+		}
+		if (num > 10 || num <= OVERFLOW)
+		{
+			printf("输出有误！请重新输入！\n");
+			continue;
+		}
         switch (num)
         {
         case 1:status = InitList(&pHead); 
-			printf("%d\n",status);
+			if (status = 1)
+				printf("成功！\n");
+			else
+				printf("失败！\n");
 			break;
 		case 2: {
 			printf("请输入想要插入结点的索引(请注意：头节点的索引为0)：");
@@ -54,7 +70,10 @@ int main()
 			scanf("%d", &data);
 			q->data = data;
 			status = InsertList(p, q);
-			printf("%d\n", status);
+			if (status = 1)
+				printf("成功！\n");
+			else
+				printf("失败！\n");
 			break; 
 		}
 		case 3: {
@@ -70,7 +89,10 @@ int main()
 			}
 			ElemType e;
 			status = DeleteList(p, &e);
-			printf("%d\n", status);
+			if (status = 1)
+				printf("成功！\n");
+			else
+				printf("失败！\n");
 			printf("删除的结点data为%d\n", e);
 			break;
 		}
@@ -85,7 +107,10 @@ int main()
 			ElemType e;
 			scanf("%d", &e);
 			status = SearchList(pHead, e);
-			printf("%d\n", status);
+			if (status = 1)
+				printf("成功！\n");
+			else
+				printf("失败！\n");
 			break; 
 		}
 		case 6: {
@@ -99,11 +124,17 @@ int main()
 			case 2:status = RecursionReverseList(&pHead); break;
 			dafault:break;
 			}
-			printf("%d\n", status);
+			if (status = 1)
+				printf("成功！\n");
+			else
+				printf("失败！\n");
 			break;
 		}
 		case 7: status = IsLoopList(pHead);
-			printf("%d\n", status);
+			if (status = 1)
+				printf("成功！\n");
+			else
+				printf("失败！\n");
 			break;
         case 8: {
 			pHead = ReverseEvenList(&pHead);
@@ -122,7 +153,7 @@ int main()
 			break;
 		}
 		case 10:DestroyList(&pHead);
-        default:break;
+        default: break;
         }
 	}
 	return 0;

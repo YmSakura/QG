@@ -288,7 +288,7 @@ LNode* FindNode(LinkedList L,int pos) {
 		p = p->next;
 		cnt++;
 	}
-	if (pos == OVERFLOW || pos > (cnt + 1) )
+	if (pos <= OVERFLOW || pos > (cnt + 1) )
 	{
 		printf("索引输入错误！请重新输入\n");
 		return NULL;
